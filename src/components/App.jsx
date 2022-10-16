@@ -32,13 +32,18 @@ export class App extends Component {
         <div>
           <PhonebookForm
             addContact={(contactName, contactNumber) => {
-              this.setState(prevState => ({
+              if (!this.state.contacts.some(contact => contact.name === contactName)) { 
+         return this.setState(prevState => ({
                 contacts: [
                   ...prevState.contacts,
                   { id: nanoid(), name: contactName, number: contactNumber },
                 ],
               }));
-            }}
+              }
+              alert(`${contactName} is already in contacts`);
+            }
+              }
+            
           />
         </div>
         <h2>Contacts</h2>
