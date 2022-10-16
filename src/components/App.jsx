@@ -25,34 +25,43 @@ export class App extends Component {
     );
   };
 
+  deleteContacts = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+    }));
+  };
+
   render() {
     return (
       <div>
         <h2>Phonebook</h2>
-        <div>
           <PhonebookForm
             addContact={(contactName, contactNumber) => {
-              if (!this.state.contacts.some(contact => contact.name === contactName)) { 
-         return this.setState(prevState => ({
-                contacts: [
-                  ...prevState.contacts,
-                  { id: nanoid(), name: contactName, number: contactNumber },
-                ],
-              }));
+              if (
+                !this.state.contacts.some(
+                  contact => contact.name === contactName
+                )
+              ) {
+                return this.setState(prevState => ({
+                  contacts: [
+                    ...prevState.contacts,
+                    { id: nanoid(), name: contactName, number: contactNumber },
+                  ],
+                }));
               }
               alert(`${contactName} is already in contacts`);
-            }
-              }
-            
-          />
-        </div>
+            }}
+        />
         <h2>Contacts</h2>
         <ContactsFilter
           initialValue={this.state.filter}
           filterChanged={filterValue => this.setState({ filter: filterValue })}
         />
 
-        <ContactsList contacts={this.filteredContacts()} />
+        <ContactsList
+          contacts={this.filteredContacts()}
+          onDeleteContact={this.deleteContacts}
+        />
       </div>
     );
   }

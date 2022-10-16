@@ -26,6 +26,9 @@ li {
   margin: 0;
   padding: 0;
 }
+li{
+  list-style:disc;
+}
 
 img {
   display: block;
