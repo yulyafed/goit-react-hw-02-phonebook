@@ -1,14 +1,16 @@
+import { Label,Input} from './ContactsFilter.styled';
+
 export const ContactsFilter = ({ initialValue, filterChanged }) => {
   return (
     <>
-      <label>
-        Find contacts by name
-        <input
+      <Label>
+        Find contacts by name <br />
+        <Input
           type="text"
           onChange={e => filterChanged(e.target.value.toLocaleLowerCase())}
           value={initialValue}
         />
-      </label>
+      </Label>
     </>
   );
 };

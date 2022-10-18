@@ -3,6 +3,8 @@ import { Component } from 'react';
 import { PhonebookForm } from './PhonebookForm/PhonebookForm';
 import { ContactsFilter } from './ContactsFilter/ContactsFilter';
 import { ContactsList } from './ContactsList/ContactsList';
+import { Title } from './App.styled';
+import { TitleContact } from './App.styled';
 
 export class App extends Component {
   state = {
@@ -33,8 +35,8 @@ export class App extends Component {
 
   render() {
     return (
-      <div>
-        <h2>Phonebook</h2>
+      <>
+        <Title>Phonebook</Title>
           <PhonebookForm
             addContact={(contactName, contactNumber) => {
               if (
@@ -52,7 +54,7 @@ export class App extends Component {
               alert(`${contactName} is already in contacts`);
             }}
         />
-        <h2>Contacts</h2>
+        <TitleContact>Contacts</TitleContact>
         <ContactsFilter
           initialValue={this.state.filter}
           filterChanged={filterValue => this.setState({ filter: filterValue })}
@@ -62,7 +64,7 @@ export class App extends Component {
           contacts={this.filteredContacts()}
           onDeleteContact={this.deleteContacts}
         />
-      </div>
+      </>
     );
   }
 }

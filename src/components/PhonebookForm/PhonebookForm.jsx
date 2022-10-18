@@ -1,6 +1,6 @@
 import { Field, Formik, ErrorMessage, Form } from 'formik';
 import * as yup from 'yup';
-import { Forma } from './PhonebookForm.styled';
+import { Button , Input, Label, FormPhone} from './PhonebookForm.styled';
 
 const schema = yup.object().shape({
   name: yup.string().required(),
@@ -24,10 +24,10 @@ export const PhonebookForm = ({ addContact }) => {
       onSubmit={handleSubmit}
       validationSchema={schema}
     >
-      <Forma autoComplete="off">
-        <label htmlFor="name">
-          Name 
-          <Field
+      <FormPhone autoComplete="off">
+        <Label htmlFor="name">
+          Name
+          <Input
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -35,10 +35,10 @@ export const PhonebookForm = ({ addContact }) => {
             required
           />
           <ErrorMessage name="name" />
-        </label>
-        <label htmlFor="number">
+        </Label>
+        <Label htmlFor="number">
           Number
-          <Field
+          <Input
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -46,9 +46,10 @@ export const PhonebookForm = ({ addContact }) => {
             required
           />
           <ErrorMessage name="number" />
-        </label>
-        <button type="submit">Add contact</button>
-      </Forma>
+        </Label>
+        <Button type="submit">Add contact</Button>
+      </FormPhone>
     </Formik>
   );
 };
+
